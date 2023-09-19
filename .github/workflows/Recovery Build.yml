@@ -14,11 +14,11 @@ on:
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
-        default: 'https://github.com/RT1648/device_xiaomi_fleur-twrp'
+        default: 'https://github.com/RT1648/device_xiaomi_fleur-ofox'
       DEVICE_TREE_BRANCH:
         description: 'DEVICE_TREE_BRANCH'
         required: true
-        default: 'twrp-12.1'
+        default: 'Fox-12.1'
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
@@ -102,14 +102,14 @@ jobs:
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
-        swap-size-gb: 12
+        swap-size-gb: 20
 
     - name: Building recovery
       run: |
         cd ${{ steps.pwd.outputs.workspace-folder }}/fox_${{ github.event.inputs.MANIFEST_BRANCH }}
         set +e
         export USE_CCACHE=1
-        ccache -M 20G
+        ccache -M 30G
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         set -e
